@@ -1,7 +1,6 @@
 
 
-# CROSS_COMPILE := aarch64-none-linux-gnu-
-CROSS_COMPILE :=
+
 CC := gcc
 
 

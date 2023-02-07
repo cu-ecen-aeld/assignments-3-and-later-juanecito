@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ###################################################################
 # Assignment 1. Juan Gomez (juanecito)
@@ -22,7 +22,7 @@ if [ ! -d "$FILESDIR" ]; then
 	exit 1
 fi
 
-NB_FILES_WITH_STR=`find $FILESDIR -type f -print 2>/dev/null | xargs grep $SEARCHSTR | sort --unique | wc -l`
+NB_FILES_WITH_STR=`find $FILESDIR -type f -print 2>/dev/null | xargs grep $SEARCHSTR | sort -u | wc -l`
 NB_MATCHINGS=`find $FILESDIR -type f -exec grep -i $SEARCHSTR {} \; 2> /dev/null | wc -l`
 
 echo "The number of files are $NB_FILES_WITH_STR and the number of matching lines are $NB_MATCHINGS"
