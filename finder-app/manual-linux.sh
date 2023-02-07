@@ -98,17 +98,19 @@ echo "Library dependencies"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
-# TODO: Add library dependencies to rootfs
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/ld-linux-aarch64.so
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
+SYSROOT=`aarch64-none-linux-gnu-gcc -print-sysroot`
 
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64/
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64/libm.so
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/libresolv.so.2
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/libresolv.so
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/
-cp -L /home/juan/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/libc.so
+# TODO: Add library dependencies to rootfs
+cp -L ${SYSROOT}/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/ld-linux-aarch64.so
+cp -L ${SYSROOT}/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
+
+cp -L ${SYSROOT}/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64/
+cp -L ${SYSROOT}/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64/libm.so
+cp -L ${SYSROOT}/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/
+cp -L ${SYSROOT}/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/libresolv.so.2
+cp -L ${SYSROOT}/lib64/libresolv-2.31.so ${OUTDIR}/rootfs/lib64/libresolv.so
+cp -L ${SYSROOT}/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/
+cp -L ${SYSROOT}/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/libc.so
 
 # TODO: Make device nodes
 
